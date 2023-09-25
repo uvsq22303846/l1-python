@@ -1,25 +1,18 @@
-jours = int(input("Entrez le nombre de jours voulus : "))
-heures = int(input("Entrez le nombre d'heures voulues : "))
-minutes = int(input("Entrez le nombre de minutes voulues : "))
-secondes = int(input("Entrez le nombre de secondes voulues : "))
-temps = (jours, heures, minutes, secondes)
+def saisie_temps():
+    jours = int(input("Entrez le nombre de jours voulus : "))
+    heures = int(input("Entrez le nombre d'heures voulues : "))
+    minutes = int(input("Entrez le nombre de minutes voulues : "))
+    secondes = int(input("Entrez le nombre de secondes voulues : "))
+    return jours, heures, minutes, secondes
 
-def tempsEnSecondes(temps):
-    jours = temps[0] * 24 * 3600
-    heures = temps[1] * 3600
-    minutes = temps[2] * 60
-    secondes = temps[3]
-    temps_en_secondes = jours + heures + minutes + secondes
+def temps_en_secondes(temps):
+    jours, heures, minutes, secondes = temps
+    temps_en_secondes = jours * 24 * 3600 + heures * 3600 + minutes * 60 + secondes
     return temps_en_secondes
 
-print(type(temps))
-print(f"Cela correspond à {tempsEnSecondes(temps)} secondes")
-
-seconde = int(input("Entrez un temps en secondes :"))
-
-def secondeEnTemps(seconde):
-    jours = seconde // (24*3600)
-    seconde = seconde % (24*3600)
+def seconde_en_temps(seconde):
+    jours = seconde // (24 * 3600)
+    seconde = seconde % (24 * 3600)
     heures = seconde // 3600
     seconde = seconde % 3600
     minutes = seconde // 60
@@ -29,7 +22,7 @@ def secondeEnTemps(seconde):
 def pluriel(n, mot):
     return mot + "s" if n != 1 else mot
 
-def afficheTemps(temps):
+def affiche_temps(temps):
     jours, heures, minutes, secondes = temps
     
     message = ""
@@ -44,5 +37,14 @@ def afficheTemps(temps):
     
     print(message, end="")
 
-temps_converti = secondeEnTemps(seconde)
-afficheTemps(temps_converti)
+if __name__ == "__main__":
+    temps_saisi = saisie_temps()
+    temps_converti = temps_en_secondes(temps_saisi)
+    
+    print(type(temps_saisi))
+    print(f"Cela correspond à {temps_converti} secondes")
+    
+    seconde_saisie = int(input("Entrez un temps en secondes : "))
+    temps_resultat = seconde_en_temps(seconde_saisie)
+    
+    affiche_temps(temps_resultat)
