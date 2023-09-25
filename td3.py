@@ -26,5 +26,23 @@ def secondeEnTemps(seconde):
     seconde = seconde % 60
     return jours, heures, minutes, seconde
 
-temps = secondeEnTemps(seconde)
-print(f"Cela correspond à {temps[0]} jours, {temps[1]} heures, {temps[2]} minutes et {temps[3]} secondes.")
+def pluriel(n, mot):
+    return mot + "s" if n != 1 else mot
+
+def afficheTemps(temps):
+    jours, heures, minutes, secondes = temps
+    
+    message = ""
+    if jours > 0:
+        message += f"{jours} {pluriel(jours, 'jour')} "
+    if heures > 0:
+        message += f"{heures} {pluriel(heures, 'heure')} "
+    if minutes > 0:
+        message += f"{minutes} {pluriel(minutes, 'minute')} "
+    if secondes > 0:
+        message += f"{secondes} {pluriel(secondes, 'seconde')} "
+    
+    print(message, end="")
+
+temps_converti = secondeEnTemps(seconde)
+afficheTemps(temps_converti)
