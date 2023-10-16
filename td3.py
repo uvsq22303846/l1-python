@@ -51,28 +51,53 @@ def afficheTemps(temps):
         message += f"{secondes} {pluriel(secondes, 'seconde')} "
     print(message, end="\n")
 
-# Fonctions permettant d'additionner deux temps distincts en les convertissant en secondes, puis en affichant le total normalement
+# Fonction permettant d'additionner deux temps distincts en les convertissant en secondes, puis en affichant le total normalement
 
 def sommeTemps(temps1, temps2):
     secondes_total = tempsEnSecondes(temps1) + tempsEnSecondes(temps2)
     temps_total = secondeEnTemps(secondes_total)
+    resultat = afficheTemps(temps_total)
     return temps_total
+
+# Fonction permettant de calculer le pourcentage d'un temps
+
+def proportionTemps(temps, pourcentage):
+    print("Quel est le temps dont vous souhaitez connaître la proportion ?")
+    temps = demandeTemps()
+    temps_sec = tempsEnSecondes(temps)
+    pourcentage = int(input("Quel est le pourcentage de ce temps que vous souhaitez connaître ? ")) / 100
+    temps_pourcentage = secondeEnTemps(temps_sec * pourcentage)
+    resultat_final = afficheTemps(temps_pourcentage)
+    return resultat_final
 
 # On utilise les premières fonctions afin de convertir en secondes un temps entré par l'utilisateur
 
-temps_saisi = demandeTemps()
-temps_converti = tempsEnSecondes(temps_saisi)
-print(f"Cela correspond à {temps_converti} secondes.\n")
+conversion_temps_secondes = input("Bonjour. Voulez-vous convertir un temps donné en secondes ? Oui [Y], Non [N] ")
+if conversion_temps_secondes == "Y".lower():
+    temps_saisi = demandeTemps()
+    temps_converti = tempsEnSecondes(temps_saisi)
+    print(f"Cela correspond à {temps_converti} secondes.\n")
 
 # On demande à l'utilisateur de rentrer un temps en secondes, puis on le converti en jours, heures, minutes et secondes
 
-seconde_saisie = int(input("Entrez un temps en secondes : "))
-temps_resultat = secondeEnTemps(seconde_saisie)
-afficheTemps(temps_resultat)
+conversion_secondes_temps = input("Maintenant, voulez vous convertir un nombre de secondes en temps ? Oui [Y], Non [N] ")
+if conversion_secondes_temps == "Y".lower():
+    seconde_saisie = int(input("Entrez un temps en secondes : "))
+    temps_resultat = secondeEnTemps(seconde_saisie)
+    afficheTemps(temps_resultat)
 
-# On demande à l'utilisateur de rentrer deux temps afin de réaliser leur somme :
+# On demande à l'utilisateur de rentrer deux temps afin de réaliser leur somme
 
-print("\nMaintenant, on va effectuer la somme de deux temps.")
-temps1 = demandeTemps()
-temps2 = demandeTemps()
-sommeTemps(temps1, temps2)
+somme_temps = input("Enfin, voulez-vous effectuer la somme de deux temps ? Oui [Y], Non [N] ")
+if somme_temps == "Y".lower():
+    temps1 = demandeTemps()
+    temps2 = demandeTemps()
+    sommeTemps(temps1, temps2)
+
+# On demande à l'utilisateur s'il veut calculer la proportion d'un temps
+
+prop_temps = input("Enfin, voulez-vous obtenir la proportion d'un temps ? Oui [Y], Non [N] ")
+if prop_temps == "Y".lower():
+    temps = 0
+    pourcentage = 0
+    proportionTemps(temps, pourcentage)
