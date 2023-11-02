@@ -65,7 +65,7 @@ def proportionTemps(temps, pourcentage):
     print("Quel est le temps dont vous souhaitez connaître la proportion ?")
     temps = demandeTemps()
     temps_sec = tempsEnSecondes(temps)
-    pourcentage = int(input("Quel est le pourcentage de ce temps que vous souhaitez connaître ? ")) / 100
+    pourcentage = float(input("Quel est le pourcentage de ce temps que vous souhaitez connaître ? ")) / 100
     temps_pourcentage = secondeEnTemps(temps_sec * pourcentage)
     resultat_final = afficheTemps(temps_pourcentage)
     return resultat_final
