@@ -136,3 +136,8 @@ temps_en_date = input("Voulez-vous obtenir un temps sous forme de date ? Oui [Y]
 if temps_en_date.lower() == "y":
     temps_utilisateur = demandeTemps()
     afficheDate()
+
+# Fonction permettant d'afficher toutes les années bissextiles depuis 1970
+
+def bissextile(jours):
+    
