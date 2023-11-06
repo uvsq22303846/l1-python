@@ -105,6 +105,14 @@ def afficheDate():
     message += f"{années}"
     print(message)
 
+#  Fonction permettant d'afficher toutes les années bissextiles depuis 1970
+
+def bissextile(jours):
+    année = jours // 365 + 1970
+    for i in range(1970, année):
+        if i%4 == 0:
+            print(i)
+
 # Demande à l'utilisateur de choisir une option
 
 conversion_temps_secondes = input("Bonjour. Voulez-vous convertir un temps donné en secndes ? Oui [Y], non [N] ")
@@ -137,7 +145,8 @@ if temps_en_date.lower() == "y":
     temps_utilisateur = demandeTemps()
     afficheDate()
 
-# Fonction permettant d'afficher toutes les années bissextiles depuis 1970
+années_bissextiles = input("Voulez-vous afficher toutes les années bissextiles depuis 1970 jusqu'à une date ? Oui [Y], non [N] ")
+if années_bissextiles.lower() == "y":
+    jours = int(input("Entrez un nombre de jours : "))
+    bissextile(jours)
 
-def bissextile(jours):
-    
