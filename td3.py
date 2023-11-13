@@ -95,9 +95,9 @@ def tempsEnDate(temps_utilisateur):
 def afficheDate():
     temps_date = tempsEnDate(temps_utilisateur)
     années, mois, jours, heures, minutes, secondes = temps_date
-    message = f"La date finale est la suivante :"
+    message = f"La date finale est la suivante : "
     if jours > 0:
-        message += f"{jours}e "
+        message += f"{jours} "
     else:
         message += "1er "
     mois_nom = ["janvier ", "février ", "mars ", "avril ", "mai ", "juin ", "juillet ", "août ", "septembre ", "octobre ", "novembre ", "décembre "]
@@ -140,7 +140,7 @@ if prop_temps.lower() == "y":
     pourcentage = float(input("Quel pourcentage du temps voulez-vous obtenir ? ")) / 100
     proportionTemps(temps, pourcentage)
 
-temps_en_date = input("Voulez-vous obtenir un temps sous forme de date ? Oui [Y], non [N] ")
+temps_en_date = input("Voulez-vous obtenir un temps sous forme de date (depuis le 1er janvier 1970 ? Oui [Y], non [N] ")
 if temps_en_date.lower() == "y":
     temps_utilisateur = demandeTemps()
     afficheDate()
@@ -149,4 +149,3 @@ années_bissextiles = input("Voulez-vous afficher toutes les années bissextiles
 if années_bissextiles.lower() == "y":
     jours = int(input("Entrez un nombre de jours : "))
     bissextile(jours)
-
