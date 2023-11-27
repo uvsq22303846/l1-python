@@ -26,17 +26,16 @@ def testLignesEgales(carre):
         return -1
 
 def testColonnesEgales(carre):
-    somme = []
-    somme_finale = []
     for j in range(4):
         somme = 0
         for i in range(4):
             somme += carre[i][j]
-        somme_finale.append(somme)
-    if all(x == somme_finale[0] for x in somme_finale):
-        return somme_finale[0]
-    else: 
-        return -1
+        if j == 0:
+            somme_finale = somme
+        else:
+            if somme_finale != somme:
+                return -1
+    return somme_finale
 
 def testDiagonalesEgales(carre):
     taille = len(carre)
@@ -62,3 +61,5 @@ def estNormal(carre):
     valeurs_attendues = set(range(1, taille**2 + 1))
     valeurs_carre = [valeur for ligne in carre for valeur in ligne]
     return set(valeurs_carre) == valeurs_attendues
+
+print(testColonnesEgales(carre_pas_mag))
