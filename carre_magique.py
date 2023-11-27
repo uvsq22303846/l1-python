@@ -62,4 +62,3 @@ def estNormal(carre):
     valeurs_attendues = set(range(1, taille**2 + 1))
     valeurs_carre = [valeur for ligne in carre for valeur in ligne]
     return set(valeurs_carre) == valeurs_attendues
-
