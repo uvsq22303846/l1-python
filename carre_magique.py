@@ -41,10 +41,9 @@ def testDiagonalesEgales(carre):
     taille = len(carre)
     somme_diagonale_principale = sum(carre[i][i] for i in range(taille))
     somme_diagonale_inverse = sum(carre[i][taille - 1 - i] for i in range(taille))
-    if somme_diagonale_principale == somme_diagonale_inverse:
-        return somme_diagonale_principale
-    else:
+    if somme_diagonale_principale != somme_diagonale_inverse:
         return -1
+    return somme_diagonale_principale
 
 def estCarreMagique(carre):
     if testLignesEgales(carre) == -1:
