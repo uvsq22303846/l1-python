@@ -15,6 +15,9 @@ def max_match(mot, i):
     j = max(0, i - taille_fenetre)
     max_match = (0, 0)
     while j < i:
+        taille_match = match_size(mot, i, j)
+        if taille_match > max_match[1]:
+            max_match = (i - j, taille_match)
         j += 1
     return max_match
 
@@ -25,10 +28,10 @@ def compresse():
     i = 0
     while i < len(texte_a_compresser):
         pass
-    affichage_compression.config(text = str(texte_compresse))
+    affichage_compression.config(text=str(texte_compresse))
 
 
-def taill(liste_LZ):
+def taille(liste_LZ):
     taille = 0
     for elem in liste_LZ:
         pass
