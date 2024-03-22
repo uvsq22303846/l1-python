@@ -6,11 +6,9 @@ min_match = 3
 
 def match_size(mot, i, j):
     k = 0
-    while i + k < len(mot):
-        if mot[i + k] == mot[j + k]:
-            k += 1
-        else:
-            return k
+    while i + k < len(mot) and mot[i + k] == mot[j + k]:
+        k += 1
+    return k
 
 
 def max_match(mot, i):
