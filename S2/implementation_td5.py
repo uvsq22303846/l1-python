@@ -11,7 +11,6 @@ def match_size(mot, i, j):
             k += 1
         else:
             return k
-    return k
 
 
 def max_match(mot, i):
