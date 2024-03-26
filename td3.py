@@ -1,5 +1,6 @@
 # Fonction permettant de demander à l'utilisateur de rentrer un temps en jours, heures, minutes et secondes
 
+
 def demandeTemps():
     jours = int(input("Entrez le nombre de jours voulus : "))
     while jours == ValueError:
@@ -15,14 +16,18 @@ def demandeTemps():
         secondes = int(input("Entrez une valeur correcte : "))
     return jours, heures, minutes, secondes
 
+
 # Fonction permettant de convertir en secondes le temps entré par l'utilisateur
 
-def tempsEnSecondes(temps): 
+
+def tempsEnSecondes(temps):
     jours, heures, minutes, secondes = temps
     temps_en_secondes = jours * 24 * 3600 + heures * 3600 + minutes * 60 + secondes
     return temps_en_secondes
 
+
 # Fonction permettant de convertir en jour, heures minutes et seconde un temps donné en secondes par l'utilisateur
+
 
 def secondeEnTemps(seconde):
     jours = seconde // (24 * 3600)
@@ -33,12 +38,16 @@ def secondeEnTemps(seconde):
     seconde = seconde % 60
     return jours, heures, minutes, seconde
 
+
 # Fonction permettant de déterminer si un mot doit être mis au pluriel ou non
+
 
 def pluriel(n, mot):
     return mot + "s" if n != 1 else mot
 
+
 # Fonction permettant d'afficher un temps en jours, heures, minutes et secondes
+
 
 def afficheTemps(temps):
     jours, heures, minutes, secondes = temps
@@ -53,14 +62,18 @@ def afficheTemps(temps):
         message += f"{secondes} {pluriel(secondes, 'seconde')}"
     print(message, end="\n")
 
+
 # Fonction permettant d'additionner deux temps distincts en les convertissant en secondes, puis en affichant le total normalement
+
 
 def sommeTemps(temps1, temps2):
     secondes_total = tempsEnSecondes(temps1) + tempsEnSecondes(temps2)
     temps_total = secondeEnTemps(secondes_total)
     return temps_total
 
+
 # Fonction permettant de calculer le pourcentage d'un temps
+
 
 def proportionTemps(temps, pourcentage):
     temps_seconde = tempsEnSecondes(temps)
@@ -68,14 +81,18 @@ def proportionTemps(temps, pourcentage):
     resultat_final = afficheTemps(temps_pourcentage)
     return resultat_final
 
-# Fonction prenant un temps en entrée et renvoyant une date en années, mois, jours, minutes, secondes (à partir du 1er janvier 1970) 
+
+# Fonction prenant un temps en entrée et renvoyant une date en années, mois, jours, minutes, secondes (à partir du 1er janvier 1970)
+
 
 def tempsEnDate(temps_utilisateur):
-    temps_départ = (1970*365, 0, 0, 0)
+    temps_départ = (1970 * 365, 0, 0, 0)
     temps_final = sommeTemps(temps_départ, temps_utilisateur)
     return temps_final
 
+
 # Fonction permettant d'afficher une date au format
+
 
 def afficheDate(temps_utilisateur):
     temps_date = tempsEnDate(temps_utilisateur)
@@ -83,10 +100,23 @@ def afficheDate(temps_utilisateur):
     années, mois = 0, 0
     années = jours // 365
     jours_restants = jours % 365
-    mois = jours_restants // 30  
+    mois = jours_restants // 30
     jours_restants = mois % 30
     message = "La date finale est la suivante : "
-    mois_nom = ["janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "décembre"]
+    mois_nom = [
+        "janvier",
+        "février",
+        "mars",
+        "avril",
+        "mai",
+        "juin",
+        "juillet",
+        "août",
+        "septembre",
+        "octobre",
+        "novembre",
+        "décembre",
+    ]
     if jours_restants > 0:
         message += f"{jours_restants} "
     else:
@@ -95,7 +125,9 @@ def afficheDate(temps_utilisateur):
     message += f"{années}\n"
     print(message)
 
+
 # Fonction permettant d'afficher toutes les années bissextiles depuis 1970
+
 
 def bissextile(jours):
     année = jours // 365 + 1970
@@ -103,7 +135,9 @@ def bissextile(jours):
         if (i % 4 == 0 and i % 100 != 0) or (i % 400 == 0):
             print(i)
 
+
 # Fonction permettant de calculer le nomre d'années bissextiles entre le 1er janvier 1970 et un nombre de jours donnés
+
 
 def nombreBissextile(jours):
     année = jours // 365 + 1970
@@ -113,15 +147,20 @@ def nombreBissextile(jours):
             bissextiles += 1
     return bissextiles
 
+
 # Demande à l'utilisateur de choisir une option
 
-conversion_temps_secondes = input("Bonjour. Voulez-vous convertir un temps donné en secndes ? Oui [Y], non [N] ")
+conversion_temps_secondes = input(
+    "Bonjour. Voulez-vous convertir un temps donné en secndes ? Oui [Y], non [N] "
+)
 if conversion_temps_secondes.lower() == "y":
     temps_saisi = demandeTemps()
     temps_converti = tempsEnSecondes(temps_saisi)
     print(f"Cela correspond à {temps_converti} secondes.\n")
 
-conversion_secondes_temps = input("Maintenant, voulez-vous convertir un nombre de secondes en temps ? Oui [Y], non [N] ")
+conversion_secondes_temps = input(
+    "Maintenant, voulez-vous convertir un nombre de secondes en temps ? Oui [Y], non [N] "
+)
 if conversion_secondes_temps.lower() == "y":
     seconde_saisie = int(input("Entrez un temps en seconde : "))
     temps_resultat = secondeEnTemps(seconde_saisie)
@@ -140,17 +179,23 @@ if prop_temps.lower() == "y":
     pourcentage = float(input("Quel pourcentage du temps voulez-vous obtenir ? ")) / 100
     proportionTemps(temps, pourcentage)
 
-temps_en_date = input("Voulez-vous obtenir un temps sous forme de date (depuis le 1er janvier 1970 ? Oui [Y], non [N] ")
+temps_en_date = input(
+    "Voulez-vous obtenir un temps sous forme de date (depuis le 1er janvier 1970 ? Oui [Y], non [N] "
+)
 if temps_en_date.lower() == "y":
     temps_utilisateur = demandeTemps()
     afficheDate(temps_utilisateur)
 
-années_bissextiles = input("Voulez-vous afficher toutes les années bissextiles depuis 1970 jusqu'à une date ? Oui [Y], non [N] ")
+années_bissextiles = input(
+    "Voulez-vous afficher toutes les années bissextiles depuis 1970 jusqu'à une date ? Oui [Y], non [N] "
+)
 if années_bissextiles.lower() == "y":
     jours = int(input("Entrez un nombre de jours : "))
     bissextile(jours)
 
-nombre_bissextile = input("Voulez-vous obtenir le nombre d'années bissextiles entre le 1er janvier 1970 et un nombre de jours donnés ? Oui [Y], non [N]")
+nombre_bissextile = input(
+    "Voulez-vous obtenir le nombre d'années bissextiles entre le 1er janvier 1970 et un nombre de jours donnés ? Oui [Y], non [N]"
+)
 if nombre_bissextile.lower() == "y":
     jours = int(input("Entrez un nombre de jours : "))
     print(f"{nombreBissextile(jours)}")
