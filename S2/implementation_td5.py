@@ -27,14 +27,30 @@ def compresse():
     texte_compresse = []
     i = 0
     while i < len(texte_a_compresser):
-        pass
+        match = max_match(texte_a_compresser, i)
+        if match[1] >= min_match:
+            texte_compresse.append((i - match[0], match[1]))
+            i += match[1]
+        else:
+            texte_compresse.append(texte_a_compresser[i])
+            i += 1
+
+    taille_texte_original = taille(texte_a_compresser)
+    rapport_compression = taille_texte_original / taille(texte_compresse)
+
+    info_fenetre.config(text=f"La taille de la fenêtre est de : {taille_fenetre}")
     affichage_compression.config(text=str(texte_compresse))
+    info_taille_originale.config(text=f"La taille originale du texte est de : {str(taille_texte_original)}")
+    info_rapport_compression.config(text=f"Le rapport de compression est de : {str(rapport_compression)}")
 
 
 def taille(liste_LZ):
     taille = 0
     for elem in liste_LZ:
-        pass
+        if isinstance(elem, str):
+            taille += 1
+        else:
+            taille += 2
     return taille
 
 
@@ -56,12 +72,14 @@ def match3():
 racine = tk.Tk()
 racine.title("Compression de texte")
 
+
 entree = tk.Entry(racine, width=100, font=("helvetica", "20"))
 entree.grid(row=1, column=0)
 
 
 entree_fenetre = tk.Entry(racine, width=100, font=("helvetica", "20"))
 entree_fenetre.grid(row=0, column=0)
+
 
 bouton_fenetre = tk.Button(
     racine,
@@ -100,7 +118,17 @@ bouton_match3 = tk.Button(
 )
 bouton_match3.grid(row=4, column=1)
 
+
 resultat = tk.Label(racine, font=("helvetica", "20"))
 resultat.grid(row=3, column=0, columnspan=2)
+
+info_fenetre = tk.Label(racine, font=("helvetica", "20"))
+info_fenetre.grid(row=7, column=0, columnspan=2)
+
+info_taille_originale = tk.Label(racine, font=("helvetica", "20"))
+info_taille_originale.grid(row=8, column=0, columnspan=2)
+
+info_rapport_compression = tk.Label(racine, font=("helvetica", "20"))
+info_rapport_compression.grid(row=9, column=0, columnspan=2)
 
 racine.mainloop()
